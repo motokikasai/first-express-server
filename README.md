@@ -1,26 +1,5 @@
 # 🤖 Express 101
 
-Your tasks for today:
-
-1. 👀 Review last week
-
-   - `http`
-   - how to create a server
-   - http methods / verbs
-
-2. 📺 Watch the following tutorial
-
-   - [Express.js by Mosh](https://www.youtube.com/watch?v=pKd0Rpw7O48)
-   - But here are the rules:
-     - type everything (code) that you see on screen
-     - stop often and experiment (use branches for those)
-
-3. 🖥 Create a DCI-Students Server
-
-   - create an express server to manage DCI Students
-
-4. 💃 Have fun
-
 ## 🔥DCI-Students Server 🔥
 
 Create a server with the following endpoint:
