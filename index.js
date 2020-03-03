@@ -1,3 +1,4 @@
+const Joi = require("@hapi/joi");
 const express = require("express");
 const app = express();
 
@@ -7,6 +8,7 @@ const students = [
   {
     name: "Adam",
     lastname: "Johnson",
+    id: 1,
     age: 33,
     class: "FBW101",
     location: "BER"
@@ -14,6 +16,7 @@ const students = [
   {
     name: "Paul",
     lastname: "Lewis",
+    id: 2,
     age: 18,
     class: "FBW101",
     location: "BER"
@@ -21,6 +24,7 @@ const students = [
   {
     name: "Edger",
     lastname: "Poe",
+    id: 3,
     age: 29,
     class: "FBW101",
     location: "BER"
@@ -28,6 +32,7 @@ const students = [
   {
     name: "Douglas",
     lastname: "Arthur",
+    id: 4,
     age: 25,
     class: "FBW101",
     location: "BER"
@@ -35,12 +40,28 @@ const students = [
   {
     name: "James",
     lastname: "Bond",
+    id: 5,
     age: 41,
     class: "FBW101",
     location: "BER"
   }
-  // ... and many more :)
 ];
+
+/** -----------------------------------------------------
+ * GET method
+ * -----------------------------------------------------*/
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.get("/api/students", (req, res) => {
+  res.send(students);
+});
+
+// app.get("/api/students", (req, res) => {
+//   const student = students.find(c => c.id === parseInt(req.params.id));
+// });
 
 /** -----------------------------------------------------
  * SETTING UP THE SERVER
