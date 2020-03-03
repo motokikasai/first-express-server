@@ -11,7 +11,7 @@ const students = [
     id: 1,
     age: 33,
     class: "FBW101",
-    location: "BER"
+    location: "Berlin"
   },
   {
     name: "Paul",
@@ -19,15 +19,15 @@ const students = [
     id: 2,
     age: 18,
     class: "FBW101",
-    location: "BER"
+    location: "Stuttgart"
   },
   {
     name: "Edger",
     lastname: "Poe",
     id: 3,
-    age: 29,
+    age: 33,
     class: "FBW101",
-    location: "BER"
+    location: "Dresden"
   },
   {
     name: "Douglas",
@@ -35,15 +35,15 @@ const students = [
     id: 4,
     age: 25,
     class: "FBW101",
-    location: "BER"
+    location: "Hanover"
   },
   {
     name: "James",
     lastname: "Bond",
     id: 5,
-    age: 41,
+    age: 23,
     class: "FBW101",
-    location: "BER"
+    location: "Berlin"
   }
 ];
 
@@ -59,9 +59,21 @@ app.get("/api/students", (req, res) => {
   res.send(students);
 });
 
-// app.get("/api/students", (req, res) => {
-//   const student = students.find(c => c.id === parseInt(req.params.id));
-// });
+function infoGetter(prop) {
+  app.get(`/api/students/:${prop}`, (req, res) => {
+    const student = students.filter(
+      c => c[prop].toString() === req.params[prop]
+    );
+    if (student.length === 0)
+      return res
+        .status(404)
+        .send(`The student with the given "${prop}" is not found`);
+    res.send(student);
+  });
+}
+
+infoGetter("location");
+// example of parameters: name, lastname, age, id, class, location
 
 /** -----------------------------------------------------
  * SETTING UP THE SERVER
