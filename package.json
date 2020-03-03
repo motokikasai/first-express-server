@@ -1,0 +1,23 @@
+{
+  "name": "express-01-students-server-motokikasai",
+  "version": "1.0.0",
+  "description": "Your tasks for today:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dci-ber-fbw21/express-01-students-server-motokikasai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dci-ber-fbw21/express-01-students-server-motokikasai/issues"
+  },
+  "homepage": "https://github.com/dci-ber-fbw21/express-01-students-server-motokikasai#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
