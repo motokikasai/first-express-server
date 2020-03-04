@@ -86,11 +86,12 @@ function infoGetter(prop) {
       return res
         .status(404)
         .send(`The student with the given '${prop}' is not found`);
+
     res.send(student);
   });
 }
 
-infoGetter("location");
+infoGetter("age");
 // example of parameters: name, lastname, age, id, class, location
 
 /** -----------------------------------------------------
