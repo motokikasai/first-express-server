@@ -80,12 +80,12 @@ app.get("/api/students", (req, res) => {
 function infoGetter(prop) {
   app.get(`/api/students/:${prop}`, (req, res) => {
     const student = students.filter(
-      c => c[prop].toString() === req.params[prop]
+      stu => stu[prop].toString() === req.params[prop]
     );
     if (student.length === 0)
       return res
         .status(404)
-        .send(`The student with the given "${prop}" is not found`);
+        .send(`The student with the given '${prop}' is not found`);
     res.send(student);
   });
 }
@@ -98,7 +98,7 @@ infoGetter("location");
  * -----------------------------------------------------*/
 
 app.post("/api/students", (req, res) => {
-  const { error, value } = schema.validate(req.body);
+  const { error } = schema.validate(req.body);
   if (error) res.status(404).send(error.details[0].message);
 
   // Template of new student data to be added...
@@ -112,6 +112,41 @@ app.post("/api/students", (req, res) => {
   };
 
   students.push(student);
+  res.send(student);
+});
+
+/** -----------------------------------------------------
+ * PUT method
+ * -----------------------------------------------------*/
+
+app.put(`/api/students/:id`, (req, res) => {
+  const { error } = schema.validate(req.body);
+  if (error) res.status(404).send(error.details[0].message);
+
+  const student = students.find(stu => stu.id === parseInt(req.params.id));
+  if (!student)
+    return res.status(404).send(`The student with the given ID is not found`);
+
+  student.name = req.body.name;
+  student.lastname = req.body.lastname;
+  student.age = req.body.age;
+  student.class = req.body.class;
+  student.location = req.body.location;
+  res.send(student);
+});
+
+/** -----------------------------------------------------
+ * DELETE method
+ * -----------------------------------------------------*/
+
+app.delete("/api/students/:id", (req, res) => {
+  const student = students.find(stu => stu.id === parseInt(req.params.id));
+  if (!student)
+    return res.status(404).send("The student with the given ID is not found");
+
+  const index = students.indexOf(student);
+  students.splice(index, 1);
+
   res.send(student);
 });
 
