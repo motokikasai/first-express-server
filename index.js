@@ -47,6 +47,22 @@ const students = [
   }
 ];
 
+const schema = Joi.object({
+  name: Joi.string()
+    .alphanum()
+    .min(3)
+    .max(30)
+    .required(),
+  lastname: Joi.string()
+    .alphanum()
+    .min(3)
+    .max(30)
+    .required(),
+  age: Joi.string()
+    .min(18)
+    .required()
+});
+
 /** -----------------------------------------------------
  * GET method
  * -----------------------------------------------------*/
@@ -74,6 +90,14 @@ function infoGetter(prop) {
 
 infoGetter("location");
 // example of parameters: name, lastname, age, id, class, location
+
+/** -----------------------------------------------------
+ * POST method
+ * -----------------------------------------------------*/
+
+app.post("/api/students", (req, res) => {
+  //  ...
+});
 
 /** -----------------------------------------------------
  * SETTING UP THE SERVER
