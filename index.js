@@ -1,16 +1,29 @@
+const config = require("config");
+const morgan = require("morgan");
+const helmet = require("helmet");
 const Joi = require("@hapi/joi");
-const logger = require("./logger");
+const { log: logger, auth: authenticater } = require("./logger");
 const express = require("express");
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // key=value&key=value
+app.use(express.static("public"));
+app.use(helmet());
 
-app.use();
+// Config
+console.log("Application Name: " + config.get("name"));
+console.log("Mail Server: " + config.get("mail.host"));
+console.log("Mail Password: " + config.get("mail.password"));
 
-app.use(function(req, res, next) {
-  console.log("Authenticating...");
-  next();
-});
+if (app.get("env") === "development") {
+  app.use(morgan("tiny"));
+  console.log("Morgan enabled...");
+}
+
+app.use(logger);
+
+app.use(authenticater);
 
 const students = [
   {
