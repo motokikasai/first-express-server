@@ -4,6 +4,16 @@ const app = express();
 
 app.use(express.json());
 
+app.use(function(req, res, next) {
+  console.log("Logging...");
+  next();
+});
+
+app.use(function(req, res, next) {
+  console.log("Authenticating...");
+  // next();
+});
+
 const students = [
   {
     name: "Adam",
@@ -69,32 +79,32 @@ const schema = Joi.object({
  * GET method
  * -----------------------------------------------------*/
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
-// app.get("/api/students", (req, res) => {
-//   res.send(students);
-// });
+app.get("/api/students", (req, res) => {
+  res.send(students);
+});
 
-// function infoGetter(prop) {
-//   app.get(`/api/students/:${prop}`, (req, res) => {
-//     const student = students.filter(
-//       stu => stu[prop].toString() === req.params[prop]
-//     );
-//     if (student.length === 0)
-//       return res
-//         .status(404)
-//         .send(`The student with the given '${prop}' is not found`);
+function infoGetter(prop) {
+  app.get(`/api/students/:${prop}`, (req, res) => {
+    const student = students.filter(
+      stu => stu[prop].toString() === req.params[prop]
+    );
+    if (student.length === 0)
+      return res
+        .status(404)
+        .send(`The student with the given '${prop}' is not found`);
 
-//     res.send(student);
-//   });
-// }
+    res.send(student);
+  });
+}
 
-// infoGetter("id");
+infoGetter("id");
 // example of parameters: name, lastname, age, id, class, location
 
-// FILTER BY AGE RANGE - with two
+// FILTER BY AGE RANGE - with two parameters
 
 // app.get(`/api/students/:min/:max`, (req, res) => {
 //   const min = parseInt(req.params.min);
@@ -114,22 +124,22 @@ const schema = Joi.object({
 
 // OR....
 
-app.get(`/api/students`, (req, res) => {
-  // By sorting through query parameters, use ..?minAge=123&maxAge=456
-  const min = parseInt(req.query.minAge);
-  const max = parseInt(req.query.maxAge);
+// app.get(`/api/students`, (req, res) => {
+//   // By sorting through query parameters, use ..?minAge=123&maxAge=456
+//   const min = parseInt(req.query.minAge);
+//   const max = parseInt(req.query.maxAge);
 
-  const student = students.filter(stu => {
-    return stu.age >= min && stu.age <= max;
-  });
+//   const student = students.filter(stu => {
+//     return stu.age >= min && stu.age <= max;
+//   });
 
-  if (student.length === 0)
-    return res
-      .status(404)
-      .send(`The student(s) with the given 'age range' is(are) not found`);
+//   if (student.length === 0)
+//     return res
+//       .status(404)
+//       .send(`The student(s) with the given 'age range' is(are) not found`);
 
-  res.send(student);
-});
+//   res.send(student);
+// });
 
 /** -----------------------------------------------------
  * POST method
