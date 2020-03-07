@@ -1,8 +1,16 @@
 const Joi = require("@hapi/joi");
+const logger = require("./logger");
 const express = require("express");
 const app = express();
 
 app.use(express.json());
+
+app.use();
+
+app.use(function(req, res, next) {
+  console.log("Authenticating...");
+  next();
+});
 
 const students = [
   {
