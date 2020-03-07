@@ -1,12 +1,12 @@
-# 🤖 Express 101
+# 🔥Express 101 🔥
 
-## 🔥DCI-Students Server 🔥
+## DCI-Students Server
 
 Create a server with the following endpoint:
 
 - `/api/students`
 
-Follow the structure from the tutorial, we want to support the following methods on our endpoint:
+support the following methods on our endpoint:
 
 - GET (all, individual)
 - PUT (individual)
@@ -27,7 +27,3 @@ Example response
   // ... and many more :)
 ];
 ```
-
-### Extra
-
-- create a query parameter for `GET /api/students` to filter for age ranges
