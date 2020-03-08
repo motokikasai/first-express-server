@@ -16,12 +16,15 @@ app.use(helmet());
 // Config
 console.log("Application Name: " + config.get("name"));
 console.log("Mail Server: " + config.get("mail.host"));
-console.log("Mail Password: " + config.get("mail.password"));
+// console.log("Mail Password: " + config.get("mail.password"));
 
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
   startupDebugger("Morgan enabled...");
 }
+
+// db work...
+// dbDebugger("Connected to the database...");
 
 app.use(logger);
 
