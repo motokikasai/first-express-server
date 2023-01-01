@@ -19,7 +19,7 @@
   "homepage": "https://github.com/dci-ber-fbw21/express-01-students-server-motokikasai#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.0",
-    "config": "^3.3.0",
+    "config": "^3.3.8",
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "helmet": "^3.21.3",
